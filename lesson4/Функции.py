@@ -35,32 +35,70 @@ import random
 # print()
 # print('Задача 2: вывести треугольник который будет размером М на N')
 #
-# def rectangle():
+# def rectangle(m,n):
 #     m = int(input('Введите высоту'))
 #     n = int(input('Введите длину'))
 #
 #     for i in range(m):
 #         print('*' * n)
-# # Данная функция не совсем коректна со стороны хорошего тона, т.к. в ней что-то записывается и выводится
-# rectangle()
+# Данная функция не совсем коректна со стороны хорошего тона, т.к. в ней что-то записывается и выводится
 
-print('Задача 3: известны оценки 25 учеников. Еть ли среди них двойки? Удалить из списка все отрицательные элементы ')
-def marks():
-    lst = [random.randint(1,5) for _ in range(25)]
-    print(lst)
-    if 2 in lst:
-         print('есть двойки')
 
-def remove_negative():
-    lst = [random.randint(-10, 10) for _ in range(25)]
-    print(lst)
-    i = 0
-    while i < len(lst):
-       if lst[i] < 0:
-           lst.remove(lst[i])
-           i -= 1
-       i += 1
-    print(lst)
+# print('Задача 3: известны оценки 25 учеников. Еть ли среди них двойки? Удалить из списка все отрицательные элементы ')
+# def marks():
+#     lst = [random.randint(1,5) for _ in range(25)]
+#     print(lst)
+#     if 2 in lst:
+#          print('есть двойки')
+#
+# def remove_negative():
+#     lst = [random.randint(-10, 10) for _ in range(25)]
+#     print(lst)
+#     i = 0
+#     while i < len(lst):
+#        if lst[i] < 0:
+#            lst.remove(lst[i])
+#            i -= 1
+#        i += 1
+#     print(lst)
+#
+# marks()
+# remove_negative()
 
-marks()
-remove_negative()
+# Параметры(создается параметр, затем, в аргументе, указывается какое количество раз будет вызван параметр)
+# Параметр копирует данные с аргумента
+# Писать функцию максимально "по обще"
+print('Задача 1: Вывести hello world столько раз, сколько напишет пользователь')
+def print_hello_world1(n):
+    for _ in range(n):
+        print('hello world!')
+
+print_hello_world1(5)
+
+
+# Усовершенствованная задача №2, сторона и высота прямоугольника переданы в параметры
+# Теперь функция написана правильно, она выполняет только одно действие
+def rectangle2(m, n):
+    for i in range(m):
+        print('*' * n)
+m = int(input('Введите высоту: '))
+n = int(input('Введите ширину: '))
+rectangle2(m, n)
+
+# Усовершенствованная вторая задача, где функция будет выполнять одно действие и будет более практична
+# Вместо создания переменной в функции, передаю ее в параметр
+# Теперь пользователь может самостоятельно задавать список и оценку
+# Но проблема в том, что у нас не будет доступа к списку который мы передали в аргумент
+def marks2(list, mark):
+    print(list)
+    if mark in list:
+         print('есть ', mark)
+marks2([random.randint(1,5) for _ in range(25)], 3)
+
+# Чтобы вызывать функции без аргумента, надо присвоить ей значение в параметре
+def print_hello_world2(n = 3):
+    for _ in range(n):
+        print('hello world!')
+
+print_hello_world2()
+
