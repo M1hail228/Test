@@ -194,18 +194,101 @@ foo62([randint(1,10) for _ in range(10)], 5)
 
 7)Сортировка списка по (возрастанию/убыванию). Повторяющиеся — убирать.
 
-
-
-8) Найти третий максимум в списке.
-9) Сдвинуть все элементы массива на два вправо. Оставшиеся элементы — поставить слева в том же порядке.
-10) Вставить K после максимального элемента.
-
-
-'''
 print('Сортировка списка по возрастанию. Повторяющиеся — убирать.')
+
+#Самый простой способ сортировки, зашитый в Python
 def foo7(lst):
+    print(lst)
+    lst.sort()
     print(lst)
 
 
-
 foo7([randint(-10, 10) for _ in range(10)])
+
+
+print('Сортировка списка по возрастанию. Повторяющиеся — убирать.')
+
+
+# Сотрировка пузырьком
+def foo72(lst):
+    print(lst)
+    #  Просматривается общее количество элементов, каждый раз оно уменьшается на 1, чтобы отсортированные эл-ты не
+    #  просматривались.
+    for i in range(len(lst) - 1):
+        #  Здесь выполняется сортировка. Если один элемент больше последующего, то они меняются местами
+        for j in range(len(lst) - i - 1):
+            if lst[j] > lst[j + 1]:
+                # Нужна временная переменная, которая сохранит данные, иначе изменится только одна переменная,
+                # а вторая приравняется к ней
+                tmp = lst[j]
+                lst[j] = lst[j + 1]
+                lst[j + 1] = tmp
+
+    unique_list = []
+    for item in lst:
+        if item not in unique_list:
+            unique_list.append(item)
+
+    print(unique_list)
+
+
+foo72([randint(-10, 10) for _ in range(10)])
+
+8) Найти третий максимум в списке.
+
+print('Найти третий максимум в списке')
+
+def foo8(lst):
+    print(lst)
+    max_lst = []
+    for _ in range(3):
+        max_elem = lst[0]
+        for i in lst:
+            if i > max_elem and i not in max_lst:
+                max_elem = i
+        max_lst.append(max_elem)
+    print(max_elem)
+
+foo8([randint(-10, 10) for _ in range(10)])
+
+9) Сдвинуть все элементы массива на два вправо. Оставшиеся элементы — поставить слева в том же порядке.
+
+print('Сдвинуть все элементы массива на два вправо. Оставшиеся элементы — поставить слева в том же порядке.')
+
+def foo9(lst):
+    print(lst)
+    new_lst = [0] * len(lst)
+    new_lst[0] = lst[-2]
+    new_lst[1] = lst[-1]
+    i = 2
+    while i < len(lst):
+        new_lst[i] = lst[i - 2]
+        i += 1
+    print(new_lst)
+
+foo9([randint(-10, 10) for _ in range(10)])
+
+10) Вставить K после максимального элемента.
+
+print('Вставить K после максимального элемента')
+
+def foo10(lst, k = 10):
+    print(lst)
+    max_elem = lst[0]
+    max_index = 0
+    for item in lst:
+        if item > max_elem:
+            max_elem = item
+            counter = max_index
+        max_index += 1
+    lst.insert(counter + 1, k)
+    print(lst)
+
+    print('Max number: ', max_elem, 'Index: ', counter)
+
+foo10([randint(-10, 10) for _ in range(10)], 10)
+
+'''
+
+
+
